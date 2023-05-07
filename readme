@@ -1,0 +1,5 @@
+pip install -r src/twitter_reader/requirements.txt
+
+aws-vault exec personal
+
+pyenv shell hakaton

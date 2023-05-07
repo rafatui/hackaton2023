@@ -1,0 +1,2 @@
+aws-lambda-powertools == 2.15.0
+urllib3<2
