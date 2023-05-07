@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { HakatonStack } from '../lib/hakaton-stack';
+import { HakatonStack } from '../lib/hackaton-stack';
 
 const app = new cdk.App();
 new HakatonStack(app, 'HakatonStack', {

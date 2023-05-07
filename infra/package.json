@@ -1,8 +1,8 @@
 {
-  "name": "hakaton",
+  "name": "hackaton",
   "version": "0.1.0",
   "bin": {
-    "hakaton": "bin/hakaton.js"
+    "hackaton": "bin/hackaton.js"
   },
   "scripts": {
     "build": "tsc",

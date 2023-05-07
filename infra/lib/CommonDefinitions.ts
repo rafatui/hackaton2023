@@ -15,7 +15,7 @@ export class TwitterFunction extends PythonFunction {
                 environment: {
                     ENVIRONMENT: "test",
                     LOG_LEVEL: "Debug",
-                    POWERTOOLS_SERVICE_NAME: "hakaton"
+                    POWERTOOLS_SERVICE_NAME: "hackaton"
                 },
                 architecture:  Architecture.X86_64
                 
