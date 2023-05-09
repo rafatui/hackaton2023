@@ -7,6 +7,7 @@ import boto3
 
 
 from aws_lambda_powertools import Logger
+from aws_lambda_powertools.utilities import parameters
 
 
 
@@ -142,8 +143,10 @@ class TwitterService:
     s3TwitterRepository: S3TwitterRepository
 
     def __init__(self) -> None:
+        
         self.urlBase = 'https://api.twitter.com/1.1/search/tweets.json?since_id={}&q={}&result_type=recent&geocode={},{},{}&include_entities=true&include_ext_edit_contro=true&count=100&tweet_mode=extended'
-        self.authorizationHeader = 'Bearer AAAAAAAAAAAAAAAAAAAAAASYnAEAAAAALMg1qPFnngcxuZG4og6VTvT2k4k%3DhGwPjI0AvjTiktl6FeMyETPpKcXP5UBdvSGVtjrd7D7NR6ThNd'
+        self.authorizationHeader = 'Bearer {twitter_auth_key}';
+        #
         self.http = urllib3.PoolManager()
         self.locationsRepository = LocationsRepository()
         self.wordsRepository =  WordsRepository()
@@ -182,7 +185,9 @@ class TwitterService:
         try:
             ret = []
             strRequest = self.urlBase.format(twitterRequest.lastExecution,twitterRequest.query,twitterRequest.latitude, twitterRequest.longitude, twitterRequest.distance)
-            resp = self.http.request('GET',strRequest, headers={'authorization': self.authorizationHeader})
+            twitter_auth_key  = parameters.get_secret("/twitter/authorizationHeader", max_age=20)
+            authorizationHeader = self.authorizationHeader.format(twitter_auth_key=twitter_auth_key)
+            resp = self.http.request('GET',strRequest, headers={'authorization': authorizationHeader})
             logger.debug("twitter response: %s" % str(resp.data))           
             tweets_object = json.loads(resp.data)
             for tweet in tweets_object["statuses"]:
