@@ -13,6 +13,8 @@ Tomando como fuente de infromación Twitter hemos intentado obtener los tweets r
 
 Descripción de la Solución
 
+![](assets/hackathon.drawio.png)
+
 Dado la gran candidad de información que se puede obtener de Twitter, además de la inmediated que representa, hemos decidido utilizarlo como fuente de datos.
 
 Primero de todo reseñar que la nueva versión del Api V2 de Twitter es necesario pagar por el uso, con lo que hemos decidido utilizar la V1 y solamente la operación que sigue disponible de forma gratuita: [https://developer.twitter.com/en/docs/twitter-api/v1/tweets/search/api-reference/get-search-tweets](https://developer.twitter.com/en/docs/twitter-api/v1/tweets/search/api-reference/get-search-tweetshttps:/)
@@ -41,14 +43,38 @@ La solución se compone de
 
 Una visión general de:
 
-**¿Qué tipo de arquitectura habéis planteado?** Por lo general, las arquitecturas modernas de aplicaciones suelen utilizar microservicios y APIs para conectar los servicios, eso no quiere decir que nos podemos encontrar con arquitecturas de N-capas, arquitecturas monolíticas, de microservicios o basadas en eventos. Dependerá de vuestro caso de uso, pero nos gustaría conocer cuál ha sido vuestra elección.
+**¿Qué tipo de arquitectura habéis planteado?**
+
+Aunque hemos utilizado una lambda se ha intentado utilizar una arquitectura por capas dentro del codigo. Así tendremos Servicios y Repositorios.
 
 **¿Qué tecnologías AWS se han utilizado?**
 
+* Dynamo
+* Lambda (Python **Runtime.PYTHON_3_10** nuevo en AWS)
+* Secret Manager
+* S3
+* AWS Comprehend
+* Code Commit
+* CDK
+
+Nos hemos encontrado algunos servicios que no están disponibles en España, a medida que estén disponibles en dicha región la idea sería migrarlos.
+
+* AWS Comprehend
+* AWS Translate
+* Code Commit
+* Code Deploy al no estar disponible Code Commit en España no es posible desplegar desde Code Commit.
+* No es posible ejecutar las Lamdas con arquitectura ARN_64 únicamete con architecture:  Architecture.X86_64
+
 ## Demo Vídeo
 
+* [Video Presentación](assets/HackathonSpain-20230509_180431-MeetingRecording.mp4)
 * [Video Demo](assets/HackathonSpain-20230509_175828-MeetingRecording.mp4)
 
 ## Team Members
 
 Lista de los miembros del equipo e ID de correo electrónico.
+
+
+* Jonas Julve jonas.julve @ tui .com (Team Lead)
+* Rafael Sanchez rafael.sanchez @tui .com
+* Rafa Leon    rafael.leong @ softtek.com
